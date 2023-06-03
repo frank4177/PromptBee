@@ -1,15 +1,16 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
     <section className="w-full max-w-full flex-start flex-col">
-      <h1 className="head_text text-left">
-        <span className="blue_gradient">{type} Post</span>
+      <h1 className="head_text font-bold text-left">
+        <span className="blue_gradient">{type} POST</span>
       </h1>
+
       <p className="desc text-left max-w-md">
         {type} and share amazing prompts with the world, and let your
-        imagination run wild with any AI-powered platform
+        imagination run wild any AI-powered plataform
       </p>
 
       <form
@@ -18,38 +19,38 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
       >
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
-            Your AI Prompt
+            Your AI Prompts
           </span>
 
           <textarea
             value={post.prompt}
-            onChange={(e) => setPost({ ...post, prompt: e.target.value })}
-            placeholder="Write your post here"
-            required
-            className="form_textarea "
+            onChange={(event) =>
+              setPost({ ...post, prompt: event.target.value })
+            }
+            placeholder="Your AI Prompts Here!"
+            className="form_textarea"
           />
         </label>
 
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
-            Field of Prompt{" "}
+            Tag
             <span className="font-normal">
-              (#product, #webdevelopment, #idea, etc.)
+              (#product, #webdevelopmemt, #idea)
             </span>
           </span>
+
           <input
             value={post.tag}
-            onChange={(e) => setPost({ ...post, tag: e.target.value })}
-            type="text"
-            placeholder="#Tag"
-            required
+            onChange={(event) => setPost({ ...post, tag: event.target.value })}
+            placeholder="Tag"
             className="form_input"
           />
         </label>
 
         <div className="flex-end mx-3 mb-5 gap-4">
-          <Link href="/" className="text-gray-500 text-sm">
-            Cancel
+          <Link href="/" className="text-gray-500 text-s">
+            CANCEL
           </Link>
 
           <button
@@ -57,7 +58,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             disabled={submitting}
             className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
           >
-            {submitting ? `${type}ing...` : type}
+            {submitting ? `${type}...` : type}
           </button>
         </div>
       </form>
