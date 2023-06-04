@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
+import {FiCopy, FiCheck} from "react-icons/fi"
 
 const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const { data: session } = useSession();
@@ -10,16 +11,16 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const router = useRouter();
 
   const [copied, setCopied] = useState("");
-
   // Implement Click Function to visit profiles
   // Check if the user is the owner of the post
   const handleProfileClick = () => {
-    console.log(post);
+
     // If the user is the owner of the post, redirect to his profile page
     if (post.creator._id === session?.user.id) return router.push("/profile");
 
     // If the user is not the owner of the post, redirect to the owner's profile page
     router.push(`/profile/${post.creator._id}?name=${post.creator.username}`);
+
   };
 
   // Copy the prompt in the clipboard and show another icon above 3 seconds
@@ -55,16 +56,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         </div>
 
         <div className="copy_btn" onClick={handleCopy}>
-          <Image
-            src={
-              copied === post.prompt
-                ? "/assets/icons/tick.svg"
-                : "/assets/icons/copy.svg"
-            }
-            alt="copy"
-            width={12}
-            height={12}
-          />
+          {copied === post.prompt ? <FiCheck/> : <FiCopy/>}
         </div>
       </div>
 
